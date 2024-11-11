@@ -1,0 +1,21 @@
+@media only screen and (max-width: 900px) {
+  .hero{
+    img{
+      width: 100%;
+      height: auto;
+    }
+    .description{
+      padding: 24px;
+      flex-direction: column;
+      p{
+        width: 100%;
+      }
+    }
+  }
+  .page{
+    img{
+      height: auto;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import url("https://use.typekit.net/jzj1ail.css");
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "cofo-sans-mono-variable", sans-serif;
+font-variation-settings: "wght" 400;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+p{
+  line-height: 1.2;
+}
+
+.hero{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  img{
+    padding: 24px;
+    height: 80%;
+    width: auto;
+    max-width: 100%;
+    margin: auto;
+    display: block;
+  }
+  .description{
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    p{
+      width: 48%;
+    }
+  }
+}
+
+.page{
+  width: 100%;
+  height: 100vh;
+  h1{
+    font-size: 64px;
+    border-bottom: 2px solid black;
+    line-height: 1;
+    margin-top: 5px;
+    padding: 5px 24px;
+    &:after{
+      content: "...";
+      position: absolute;
+      right: 24px;
+    }
+  }
+  img{
+    height: 70%;
+    width: auto;
+    max-width: 100%;
+    margin: auto;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+.text-section{
+  padding: 24px;
+  max-width: 600px;
+  margin: auto;
+}
