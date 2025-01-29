@@ -3,5 +3,6 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  carousel: dynamic(() => import("./Carousel")),
   rich_text: dynamic(() => import("./RichText")),
 };

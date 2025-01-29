@@ -11,6 +11,10 @@ font-variation-settings: "wght" 400;
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 p{
   line-height: 1.2;
 }
@@ -69,4 +73,150 @@ p{
   padding: 24px;
   max-width: 600px;
   margin: auto;
+}
+
+body{
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+.a-to{
+  padding: 0 14px;
+  width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  line-height: 1.3;
+  animation: fadeIn 1.5s ease;
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  p{
+    line-height: 1.3;
+  }
+  .nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: end;
+    padding: 14px;
+    h1{
+      margin: 0;
+      font-size: 42px;
+    }
+    .menu{
+      font-size: 42px;
+      position: absolute;
+      right: 14px;
+      z-index: 9999;
+    }
+    position: absolute;
+    background-color: white;
+    top: 0;
+    left: 0;
+  }
+  .menu-wrapper{
+    width: 500px;
+    max-width: 100%;
+    padding: 0 14px;
+    height: 100vh;
+    position: fixed;
+    right: -500px;
+    top: 0;
+    border-left: 1px solid black;
+    background-color: white;
+    z-index: 888;
+    transition: right 0.4s ease;
+    padding-bottom: 100px;
+    overflow-y: auto;
+    &.show{
+      right: 0;
+    }
+    .info{
+      margin-top: 100px;
+    }
+  }
+  .description{
+    max-width: 320px;
+    margin-top: 80px;
+  }
+  .image-text{
+    display: flex;
+    margin-top: -40px;
+    // align-items: center;
+    img{
+      width: 50%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .text{
+      width: 45%;
+      padding: 40px 24px;
+      font-size: 20px;
+      .button{
+        margin-top: 24px;
+      }
+    }
+  }
+  .button{
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px 15px;
+    width: fit-content;
+    font-size: 20px;
+    &:hover{
+      background-color: black;
+      transition: all 0.4s ease;
+      a{
+        color: white;
+      }
+      color: white;
+    }
+  }
+  .carousel{
+    width: 130vw;
+    margin-left: -15vw;
+    position: absolute;
+    z-index: -1;
+    .slick-slider, .slick-list{
+      // padding-bottom: 48px;
+      height: 90vh;
+    }
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      
+    }
+    .carousel-item{
+      transform: scale(0.7);
+      transform-origin: center;
+      height: 75vh;
+      transition: all 0.4s ease;
+      display: flex!important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .button{
+        transition: all 0.4s ease;
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+    .slick-current .carousel-item{
+      transform: scale(1);
+      overflow: visible;
+      .button{
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
 }
