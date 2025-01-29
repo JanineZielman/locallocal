@@ -49,6 +49,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
     >
       <Slider {...settings}>
         {slice.primary.carousel.map((item, i) => {
+          console.log(item.link)
           return(
             <div key={i} className={`carousel-item`}>
               <img src={item.image?.url || ""} alt={item.image?.alt || "Image"} />

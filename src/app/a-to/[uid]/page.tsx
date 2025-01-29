@@ -44,7 +44,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const page = await client.getByUID("a_to_page", uid).catch(() => notFound());
   const home = await client.getByUID("a_to_page", 'a-to').catch(() => notFound());
 
-  console.log(page)
 
   return (
     <div className="a-to">
@@ -67,7 +66,9 @@ export async function generateStaticParams() {
   /**
    * Query all Documents from the API, except the homepage.
    */
-  const pages = await client.getAllByType("a_to_page");
+  const pages = await client.getAllByType("a_to_page", {
+    predicates: [prismic.filter.not("my.a_to_page.uid", "a-to")],
+  });
 
   /**
    * Define a path for every Document.
