@@ -32,11 +32,12 @@ export default async function Index() {
   // The client queries content from the Prismic API
   const client = createClient();
   const home = await client.getByUID("a_to_page", "a-to");
+  const filters = await client.getAllByType('a_to_filter');
 
 
   return (
     <div className="a-to">
-      <Nav home={home}/>
+      <Nav home={home} filters={filters}/>
       <SliceZone slices={home.data.slices} components={components} />
     </div>
   )

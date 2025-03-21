@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { isFilled } from "@prismicio/client";
 
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
@@ -8,6 +9,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { PrismicNextImage } from "@prismicio/next";
 import Nav from "@/components/Nav";
+import Link from "next/link";
 
 type Params = { uid: string };
 
@@ -22,7 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { uid } = await params;
   const client = createClient();
-  const page = await client.getByUID("a_to_page", uid).catch(() => notFound());
+  const page = await client.getByUID("a_to_filter", uid).catch(() => notFound());
 
   return {
     title: page.data.title,
@@ -41,19 +43,25 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { uid } = await params;
   const client = createClient();
-  const page = await client.getByUID("a_to_page", uid).catch(() => notFound());
+  const page = await client.getByUID("a_to_filter", uid).catch(() => notFound());
   const home = await client.getByUID("a_to_page", 'a-to').catch(() => notFound());
   const filters = await client.getAllByType('a_to_filter');
+  const items = await client.getAllByType("a_to_page", {
+    predicates: [
+      prismic.filter.not("my.a_to_page.uid", "a-to")],
+  });
 
   return (
     <div className="a-to">
-      <Nav home={home} filters={filters}/>
-      <div className="image-text">
-        <PrismicNextImage field={page.data.image} />
-        <div className="text">
-          <PrismicRichText field={page.data.description} />
-          <div className="button"><a href={prismic.asLink(page.data.link) || "#"}>Download</a></div>
-        </div>
+      <Nav home={page} filters={filters}/>
+      <div className="filter-items">
+        {items.filter((item) => isFilled.contentRelationship(item.data.filter) && item.data.filter.uid == page.uid).map((item, i) => {
+          return(
+            <Link className="filter-item" href={`/a-to/${item.uid}`}>
+              <PrismicNextImage field={item.data.image} alt=""/>
+            </Link>
+          )
+        })}
       </div>
       <SliceZone slices={page.data.slices} components={components} />
     </div>
@@ -66,9 +74,7 @@ export async function generateStaticParams() {
   /**
    * Query all Documents from the API, except the homepage.
    */
-  const pages = await client.getAllByType("a_to_page", {
-    predicates: [prismic.filter.not("my.a_to_page.uid", "a-to")],
-  });
+  const pages = await client.getAllByType("a_to_filter");
 
   /**
    * Define a path for every Document.

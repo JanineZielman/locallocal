@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "a_to_page",
-  "label": "A to Page",
+  "id": "a_to_filter",
+  "label": "A to Filter",
   "repeatable": true,
   "status": true,
   "json": {
@@ -28,43 +28,11 @@
           "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
         }
       },
-      "image": {
-        "type": "Image",
-        "config": {
-          "label": "Image",
-          "constraint": {
-            "width": 1080,
-            "height": 1080
-          },
-          "thumbnails": []
-        }
-      },
-      "link": {
-        "type": "Link",
-        "config": {
-          "label": "Link",
-          "placeholder": "",
-          "select": "media",
-          "allowText": false
-        }
-      },
-      "filter": {
-        "type": "Link",
-        "config": {
-          "label": "Filter",
-          "select": "document",
-          "customtypes": ["a_to_filter"]
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "carousel": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
