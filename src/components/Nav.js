@@ -37,7 +37,7 @@ export default function Nav({ home, filters }) {
     <div className="menu-items">
       {filters.map((item, i) => {
         return(
-          <Link href={`/a-to/filter/${item.uid}`}>{item.data.title}</Link>
+          <Link key={`filter${i}`} href={`/a-to/filter/${item.uid}`}>{item.data.title}</Link>
         )
       })}
     </div>

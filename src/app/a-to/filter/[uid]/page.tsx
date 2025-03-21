@@ -57,7 +57,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       <div className="filter-items">
         {items.filter((item) => isFilled.contentRelationship(item.data.filter) && item.data.filter.uid == page.uid).map((item, i) => {
           return(
-            <Link className="filter-item" href={`/a-to/${item.uid}`}>
+            <Link key={`filter-item${i}`} className="filter-item" href={`/a-to/${item.uid}`}>
               <PrismicNextImage field={item.data.image} alt=""/>
             </Link>
           )
