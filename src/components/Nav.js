@@ -40,6 +40,7 @@ export default function Nav({ home, filters }) {
           <Link key={`filter${i}`} href={`/a-to/filter/${item.uid}`}>{item.data.title}</Link>
         )
       })}
+      <Link target="_blank" href={`https://artezhogeschool.sharepoint.com/:b:/r/sites/GDAstudentfiles495/Gedeelde%20documenten/Yr3%20Portfolio/2025-2026/A-to/local_Inter_Exchanges.pdf?csf=1&web=1&e=nVwt3J`}>Present</Link>
     </div>
     </>
   );
